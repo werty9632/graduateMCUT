@@ -1,84 +1,25 @@
 ---
 title: Index - Graduation Party Template
 ---
-
-<!--<%= partial "headerNav" %>-->
-
-<!--<div class="welcome">
-  <div class="logo">
-    <%= image_tag "middleman-logo.svg" %>
-  </div>
-  <h1>Middleman is Running</h1>
-  <p class="doc">
-    <%= link_to "Read Documentation Online", "https://middlemanapp.com", target: "_blank" %>
-  </p>
-</div>-->
+<!-- Header Navbar -->
+<%= partial "headerNav" %>
 
 <!-- Header Cover -->
-<div class="siteWrapper">
-  <div class="siteWrapperInner">
-    <div class="coverContainer">
-      <div class="coverInner">
-        <h1 class="coverHeading">Cover your page.</h1>
-        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /Header Cover -->
+<%= partial "headerCover" %>
 
 <!-- Event Info w/ Parallax Background -->
-<div class="infoWrapper">
-	<div class="infoWrapperInner">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3 infoText">
-					<h2><%= lorem.words 4%></h2>
-					<p><%= lorem.paragraphs 3 %></p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- /Event Info -->
+<%= partial "eventInfoParalBack" %>
 
-<!-- Event List -->
-<div class="container-fluid">
-	<div class="row">
+<!-- Event Info (Detailed) -->
+<%= partial "eventInfoDetailed" %>
 
-		<div class="col-sm-4 eventListWrapper">
-			<img src="images/img2.jpg" class="eventListImage">
-			<p><%= lorem.paragraph %></p>
-			<a href="#">
-				<button class="eventLinkButton">
-					Default
-				</button>
-			</a>
-		</div>
+<!-- Sub-Event List (2 Events) -->
+<%= partial "subEventInfo2" %>
 
-		<div class="col-sm-4 eventListWrapper">
-			<img src="images/img2.jpg" class="eventListImage">
-			<p><%= lorem.paragraph %></p>
-			<a href="#">
-				<button class="eventLinkButton">
-					Default
-				</button>
-			</a>
-		</div>
+<!-- Sub-Event List (3 Events) -->
+<%= partial "subEventInfo3" %>
 
-		<div class="col-sm-4 eventListWrapper">
-			<img src="images/img2.jpg" class="eventListImage">
-			<p><%= lorem.paragraph %></p>
-			<a href="#">
-				<button class="eventLinkButton">
-					Default
-				</button>
-			</a>
-		</div>
-		
-	</div>
-</div>
-<!-- /Event List -->
-
+<!-- Event Video -->
+<%= partial "video" %>
 
 
