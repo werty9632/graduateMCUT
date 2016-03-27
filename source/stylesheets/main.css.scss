@@ -9,6 +9,9 @@ html {
   padding: 0;
   overflow-x: hidden;
 }
+body {
+  position: relative; // For scrollspy
+}
 h2 {
   margin-top: 30px;
   margin-bottom: 15px;
@@ -26,6 +29,38 @@ h2 {
   display: table-cell;
   vertical-align: middle;
 }
+// Buttons
+@mixin buttonSetup($themeColor, $fontColor) {
+  a {
+    button {
+      display: inline-block;
+      color: $themeColor;
+      font-size: 15px;
+      text-decoration: none;
+      background-color: transparent;
+      margin-bottom: 20px;
+      text-align: center;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+          touch-action: manipulation;
+      cursor: pointer;
+      border: 1px solid $themeColor;
+      padding: 10px 15px;  
+      line-height: 1.42857143;
+      border-radius: 4px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;  
+      }
+    :hover,
+    :active {
+      color: $fontColor;
+      border-color: $themeColor;
+      background-color: $themeColor;
+    }
+  }
+}
 
 
 // Top-Fixed Navigation Bar (_headerNav.erb)
@@ -37,26 +72,34 @@ h2 {
   margin-bottom: 0px;
   border-radius: 0;
   height: 32px;
+  min-height: 32px;
   text-align: center;
   z-index: 10;
 }
 .headerNavLink {
   margin-bottom: 0px;
-  li {
+  .navLinkText {
     display: inline-block;
     padding: 0 10px;
     font-size: 15px;
     a {
       color: #ffffff;
       line-height: 32px;
-      :hover {
-        text-decoration: none;
-      }
+    }
+    :hover {
+      background: #999999;
+      color: #fff;
+      text-decoration: none;
     }
   }
   .headerNavLinkRight {
-    position: relative;
     float: right;
+    a {
+      color: #ffaf40;
+    }
+    :hover {
+      text-decoration: none;
+    }
   }
 }
 @media (max-width: 767px) {
@@ -140,35 +183,7 @@ html,
     text-align: left;
     margin-bottom: 20px;
   }
-  a {
-    button {
-      display: inline-block;
-      color: #f89680;
-      font-size: 15px;
-      text-decoration: none;
-      background-color: transparent;
-      margin-bottom: 20px;
-      text-align: center;
-      vertical-align: middle;
-      -ms-touch-action: manipulation;
-          touch-action: manipulation;
-      cursor: pointer;
-      border: 1px solid #f89680;
-      padding: 10px 15px;  
-      line-height: 1.42857143;
-      border-radius: 4px;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;  
-      }
-    :hover,
-    :active {
-      color: #ffffff;
-      border-color: #f89680;
-      background-color: #f89680;
-    }
-  }
+  @include buttonSetup(#f89680, #fff);
 }
 .eventList1Text {
   padding: 0px 1% 0 10%;
@@ -196,9 +211,153 @@ html,
   }
 }
  
-    
+// Sponsor Block
+.sponsorBlock {
+  .row {
+    display: flex;
+    .sponsorInfo {
+      align-items: stretch;
+      color: #fff;
+      padding-bottom: 75px;
+      @include buttonSetup(#fff, #000);
+      a {
+        position: absolute;
+        bottom: 0;
+        right: 10px;
+      }
+    }
+  }
+}
+.sponsorInfo31 {
+  background: linear-gradient(transparent, #000), url(../images/400_600_1.png) scroll no-repeat center;
+  background-size: cover;
+}
+.sponsorInfo32 {
+  background: linear-gradient(transparent, #000), url(../images/400_600_2.png) scroll no-repeat center;
+  background-size: cover;
+}
+.sponsorInfo33 {
+  background: linear-gradient(transparent, #000), url(../images/400_600_3.png) scroll no-repeat center;
+  background-size: cover;
+}
+.sponsorInfo21 {
+  background: linear-gradient(transparent, #000), url(../images/800_450.jpg) scroll no-repeat center;
+  background-size: cover;
+}
+.sponsorInfo22 {
+  background: linear-gradient(transparent, #000), url(../images/800_450.jpg) scroll no-repeat center;
+  background-size: cover;
+}
+.sponsorInfo11 {
+  background: linear-gradient(transparent, #000), url(../images/800_450.jpg) scroll no-repeat center;
+  background-size: cover;
+}
 
+// Sponsor Popups
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 70%;
+  position: relative;
+  transition: all 5s ease-in-out;
+  h2 {
+    margin-top: 0;
+    color: #0000aa;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #0000aa;
+  }
+  .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+}
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
 
+// Footer - Brands
+.footerBrandBlock {
+  background-color: #000;
+  color: #fff;
+  padding-bottom: 8%;
+  .brandTitle {
+    text-align: center;
+    padding-top: 6%;
+  }
+  .brandHyphen {
+    width: 4%;
+    margin: 2% 48% 4% 48%;
+    border: 1px solid #fff; 
+  }
+  .brandLogoContainer {
+    margin: 0 10%;
+    .brandLogo{
+      display: inline-block;
+      width: 8%;
+      margin: 0 4%;
+    }
+  }
+}
+
+// Footer - Buying
+.footerBuyBlock {
+  //@include vcenter (100%, 10%);
+  @include buttonSetup(#fff, #0000aa);
+  background-color: #0000aa;
+  color: #fff;
+  padding: 2% 18% 2% 25%;
+  
+  .buyBlockInner {
+    display: flex;
+    align-items: center;
+    //@include vcenterInner;
+    .buyText {
+      display: inline-block;
+    }
+    a {
+      display: inline-block;
+      float: right;
+      margin-left: 6%;
+      button {
+        margin-bottom: 0;
+      }
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
 
 
 

@@ -11,13 +11,13 @@
     <link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 
     <%= stylesheet_link_tag :main %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <%= javascript_include_tag :all %>
   </head>
 
-  <body class="<%= page_classes %>">
+  <body class="<%= page_classes %>" data-spy="scroll" data-target=".headerNav" data-offset="50">
 
     <%= yield %>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   </body>
 </html>
