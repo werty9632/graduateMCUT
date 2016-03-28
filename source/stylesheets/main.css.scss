@@ -61,6 +61,24 @@ h2 {
     }
   }
 }
+// Sponsor Block Setting
+@mixin sponsorBlock ($blockHeight, $buttonRight, $buttonBottom) {
+  .row {
+    display: flex;
+    .sponsorInfo {
+      align-items: stretch;
+      color: #fff;
+      padding-top: 5%;
+      padding-bottom: $blockHeight;
+      @include buttonSetup(#fff, #000);
+      a {
+        position: absolute;
+        bottom: $buttonBottom;
+        right: $buttonRight;
+      }
+    }
+  }
+}
 
 
 // Top-Fixed Navigation Bar (_headerNav.erb)
@@ -196,7 +214,7 @@ html,
 // Video Block (_video.erb)
 .videoContainer {
   position: relative;
-  padding-bottom: 56.25%;
+  padding-bottom: 43%;
   padding-top: 30px;
   height: 0;
   overflow: hidden;
@@ -212,46 +230,51 @@ html,
 }
  
 // Sponsor Block (_sponsorArea1.erb, _sponsorArea2.erb, _sponsorArea3.erb)
-.sponsorBlock {
+.sponsorBlock1 {
+  @include sponsorBlock(20%, 15%, 15%);
+}
+.sponsorBlock2 {
+  @include sponsorBlock(14%, 13%, 14%);
+}
+.sponsorBlock3 {
+  @include sponsorBlock(10%, 13%, 10%);
   .row {
-    display: flex;
     .sponsorInfo {
-      align-items: stretch;
-      color: #fff;
-      padding-bottom: 75px;
-      @include buttonSetup(#fff, #000);
-      a {
-        position: absolute;
-        bottom: 0;
-        right: 10px;
-      }
+      padding-top: 3%; // Height adjust. Default value of @mixin is too damn high.
     }
   }
 }
 .sponsorInfo31 {
   background: linear-gradient(transparent, #000), url(../images/400_600_1.png) scroll no-repeat center;
   background-size: cover;
+  padding: 0 4%;
 }
 .sponsorInfo32 {
   background: linear-gradient(transparent, #000), url(../images/400_600_2.png) scroll no-repeat center;
   background-size: cover;
+  padding: 0 4%;
 }
 .sponsorInfo33 {
   background: linear-gradient(transparent, #000), url(../images/400_600_3.png) scroll no-repeat center;
   background-size: cover;
+  padding: 0 4%;
 }
 .sponsorInfo21 {
   background: linear-gradient(transparent, #000), url(../images/800_450.jpg) scroll no-repeat center;
   background-size: cover;
+  padding: 0 6%;
 }
 .sponsorInfo22 {
   background: linear-gradient(transparent, #000), url(../images/800_450.jpg) scroll no-repeat center;
   background-size: cover;
+  padding: 0 6%;
 }
 .sponsorInfo11 {
   background: linear-gradient(transparent, #000), url(../images/800_450.jpg) scroll no-repeat center;
   background-size: cover;
+  padding: 0 15%;
 }
+
 
 // Sponsor Popups
 .overlay {
@@ -307,14 +330,21 @@ html,
 }
 
 // Used Sponsor Area
-.sponsorUsed {
-  h2, p {
-    color: #666;
-  }
-    background: linear-gradient(transparent, #aaaaaa);
+.sponsorUsed {           // Add this class to change sponsor section status.
+  color: #444 !important;
   a {
-    display: none;
+    pointer-events: none;
+    button {
+      background-color: #fff !important;
+      border: 1px solid #000 !important;
+      span {   
+        color: #444;
+      }
+    }
   }
+}
+.buttonWordsUsed {      // Toggle this class to change button words.
+  display: none;
 }
 
 // Footer - Brands (_brandArea.erb)
@@ -369,6 +399,14 @@ html,
     }
   }
 }
+
+
+// Responsive Layout
+
+
+
+
+
 
 
 
