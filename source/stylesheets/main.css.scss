@@ -168,7 +168,7 @@ html,
   }
 }
 
-// Event List (index.html)
+// Event List (_subEventInfo2.erb, _subEventInfo3.erb)
 .eventList {
   padding: 80px 25px 50px 25px;
 }
@@ -193,7 +193,7 @@ html,
   }
 }
 
-// Video Block
+// Video Block (_video.erb)
 .videoContainer {
   position: relative;
   padding-bottom: 56.25%;
@@ -211,7 +211,7 @@ html,
   }
 }
  
-// Sponsor Block
+// Sponsor Block (_sponsorArea1.erb, _sponsorArea2.erb, _sponsorArea3.erb)
 .sponsorBlock {
   .row {
     display: flex;
@@ -306,7 +306,18 @@ html,
   }
 }
 
-// Footer - Brands
+// Used Sponsor Area
+.sponsorUsed {
+  h2, p {
+    color: #666;
+  }
+    background: linear-gradient(transparent, #aaaaaa);
+  a {
+    display: none;
+  }
+}
+
+// Footer - Brands (_brandArea.erb)
 .footerBrandBlock {
   background-color: #000;
   color: #fff;
@@ -330,7 +341,7 @@ html,
   }
 }
 
-// Footer - Buying
+// Footer - Buying (_buyingArea.erb)
 .footerBuyBlock {
   //@include vcenter (100%, 10%);
   @include buttonSetup(#fff, #0000aa);
