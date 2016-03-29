@@ -18,7 +18,7 @@ h2 {
 }
 
 // <Mixins>
-// Vertical-align (Table Method)
+// Vertical-align Mixin(Table Method)
 @mixin vcenter($vwidth: 100%, $vheight: 100%) {
   display: table;
   width: $vwidth;
@@ -29,7 +29,8 @@ h2 {
   display: table-cell;
   vertical-align: middle;
 }
-// Buttons
+
+// Buttons Mixin
 @mixin buttonSetup($themeColor, $fontColor) {
   a {
     button {
@@ -61,12 +62,19 @@ h2 {
     }
   }
 }
-// Sponsor Block Setting
+
+// Sponsor Block Setting Mixin
 @mixin sponsorBlock ($blockHeight, $buttonRight, $buttonBottom) {
   .row {
     display: flex;
+    @media (max-width: 767px) {
+      display: block;
+    }
     .sponsorInfo {
       align-items: stretch;
+      @media (max-width: 767px) {
+        display: block;
+      }
       color: #fff;
       padding-top: 5%;
       padding-bottom: $blockHeight;
@@ -166,7 +174,9 @@ html,
   }
 }
 
+
 // Event Intro w/ Parallax Background (_eventInfoParalBack.erb)
+
 .infoWrapper {
   @include vcenter(100%, 60%);
   .infoWrapperInner {
@@ -174,7 +184,10 @@ html,
     background : linear-gradient(transparent, rgba(0,0,0,.9)), url(../images/800_450.jpg) fixed no-repeat 100%;
     background-size: cover;
     background-position: center;
-    padding: 80px 0 110px 0;
+    padding: 4% 0 6.5% 0;
+    @media (max-width: 767px) {
+      padding: 4% 3% 6.5% 3%;
+    }
   }
 }
 .infoText {
@@ -186,32 +199,51 @@ html,
   }
 }
 
+
 // Event List (_subEventInfo2.erb, _subEventInfo3.erb)
-.eventList {
-  padding: 80px 25px 50px 25px;
-}
+
 .eventListWrapper {
   text-align: center;
-  padding: 0 35px;
+  padding: 5%;
+  @media (max-width: 767px) {
+    padding: 10%;
+  }
   .eventListImage {
     display: inline-block;
-    width: 60%;
+    width: 70%;
   }
   p {
     text-align: left;
     margin-bottom: 20px;
   }
   @include buttonSetup(#f89680, #fff);
+  .eventLinkButton {
+    margin-bottom: 5%;
+  }
+}
+.eventList1Img {
+  min-width: 100%;
+}
+.eventList3Img {
+  min-width: 80%;
 }
 .eventList1Text {
-  padding: 0px 1% 0 10%;
+  padding: 6%;
+  @media (max-width: 767px) {
+    padding: 10%;
+  }
   h2,
   p {
     text-align: left;
   }
+  h2 {
+    margin-top: 15px;
+  }
 }
 
+
 // Video Block (_video.erb)
+
 .videoContainer {
   position: relative;
   padding-bottom: 43%;
@@ -227,14 +259,29 @@ html,
     width: 100%;
     height: 100%;
   }
+  @media (max-width: 767px) {
+    padding-bottom: 70%;
+  }
+  @media (max-width: 420px) {
+    padding-bottom: 100%;
+  }
 }
- 
+
+
 // Sponsor Block (_sponsorArea1.erb, _sponsorArea2.erb, _sponsorArea3.erb)
+// $blockHeight, $buttonRight, $buttonBottom
+
 .sponsorBlock1 {
   @include sponsorBlock(20%, 15%, 15%);
+  @media (max-width: 767px) {
+    @include sponsorBlock(25%, 15%, 15%);
+  }
 }
 .sponsorBlock2 {
   @include sponsorBlock(14%, 13%, 14%);
+  @media (max-width: 767px) {
+    @include sponsorBlock(25%, 15%, 15%);
+  }
 }
 .sponsorBlock3 {
   @include sponsorBlock(10%, 13%, 10%);
@@ -243,40 +290,57 @@ html,
       padding-top: 3%; // Height adjust. Default value of @mixin is too damn high.
     }
   }
+  @media (max-width: 767px) {
+    @include sponsorBlock(25%, 15%, 15%);
+  }
 }
+
+@mixin sponsorInfoCollapse ($infoPadding: 10%) {
+  @media (max-width: 767px) {
+    padding: 0 $infoPadding;
+  }
+}
+
 .sponsorInfo31 {
   background: linear-gradient(transparent, #000), url(../images/400_600_1.png) scroll no-repeat center;
   background-size: cover;
   padding: 0 4%;
+  @include sponsorInfoCollapse;
 }
 .sponsorInfo32 {
   background: linear-gradient(transparent, #000), url(../images/400_600_2.png) scroll no-repeat center;
   background-size: cover;
   padding: 0 4%;
+  @include sponsorInfoCollapse;
 }
 .sponsorInfo33 {
   background: linear-gradient(transparent, #000), url(../images/400_600_3.png) scroll no-repeat center;
   background-size: cover;
   padding: 0 4%;
+  @include sponsorInfoCollapse;
 }
 .sponsorInfo21 {
   background: linear-gradient(transparent, #000), url(../images/800_450.jpg) scroll no-repeat center;
   background-size: cover;
   padding: 0 6%;
+  @include sponsorInfoCollapse;
 }
 .sponsorInfo22 {
   background: linear-gradient(transparent, #000), url(../images/800_450.jpg) scroll no-repeat center;
   background-size: cover;
   padding: 0 6%;
+  @include sponsorInfoCollapse;
 }
 .sponsorInfo11 {
   background: linear-gradient(transparent, #000), url(../images/800_450.jpg) scroll no-repeat center;
   background-size: cover;
   padding: 0 15%;
+  @include sponsorInfoCollapse;
 }
 
 
 // Sponsor Popups
+
 .overlay {
   position: fixed;
   top: 0;
@@ -329,7 +393,9 @@ html,
   }
 }
 
+
 // Used Sponsor Area
+
 .sponsorUsed {           // Add this class to change sponsor section status.
   color: #444 !important;
   a {
@@ -347,7 +413,9 @@ html,
   display: none;
 }
 
+
 // Footer - Brands (_brandArea.erb)
+
 .footerBrandBlock {
   background-color: #000;
   color: #fff;
@@ -367,29 +435,35 @@ html,
       display: inline-block;
       width: 8%;
       margin: 0 4%;
+      @media (max-width: 767px) {
+        width: 16%;
+        margin: 5% 8%;
+      }
     }
   }
 }
 
+
 // Footer - Buying (_buyingArea.erb)
+
 .footerBuyBlock {
-  //@include vcenter (100%, 10%);
   @include buttonSetup(#fff, #0000aa);
   background-color: #0000aa;
   color: #fff;
-  padding: 2% 18% 2% 25%;
+  padding: 3% 16%;
+  @media (max-width: 767px) {
+    padding: 3% 5%;
+  }
   
   .buyBlockInner {
     display: flex;
     align-items: center;
-    //@include vcenterInner;
+    justify-content: center;
     .buyText {
       display: inline-block;
     }
     a {
-      display: inline-block;
-      float: right;
-      margin-left: 6%;
+      margin-left: 3%;
       button {
         margin-bottom: 0;
       }
@@ -399,9 +473,6 @@ html,
     }
   }
 }
-
-
-// Responsive Layout
 
 
 
