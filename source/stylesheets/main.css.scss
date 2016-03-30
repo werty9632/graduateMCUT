@@ -9,13 +9,15 @@ html {
   padding: 0;
   overflow-x: hidden;
 }
-body {
-  position: relative; // For scrollspy
-}
 h2 {
   margin-top: 30px;
   margin-bottom: 15px;
+  letter-spacing: 2px;
 }
+p {
+  letter-spacing: 1px;
+}
+
 
 // <Mixins>
 // Vertical-align Mixin(Table Method)
@@ -50,9 +52,9 @@ h2 {
       line-height: 1.42857143;
       border-radius: 4px;
       -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;  
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;  
       }
     :hover,
     :active {
@@ -65,13 +67,18 @@ h2 {
 
 // Sponsor Block Setting Mixin
 @mixin sponsorBlock ($blockHeight, $buttonRight, $buttonBottom) {
+  z-index: 4;
   .row {
+    display: -webkit-box;  
+    display: -ms-flexbox;  
+    display: -webkit-flex; 
     display: flex;
     @media (max-width: 767px) {
       display: block;
     }
     .sponsorInfo {
-      align-items: stretch;
+      -webkit-align-items: stretch;
+              align-items: stretch;
       @media (max-width: 767px) {
         display: block;
       }
@@ -106,7 +113,7 @@ h2 {
   margin-bottom: 0px;
   .navLinkText {
     display: inline-block;
-    padding: 0 10px;
+    padding: 0 1%;
     font-size: 15px;
     a {
       color: #ffffff;
@@ -138,14 +145,17 @@ h2 {
 }
 
 
-// Customize index.html (index.html)
+// Customize html for Full-Screen Size Cover image
 
 html,
-.index {
-  height: 100%; /*For Full-Screen Size Cover image.*/
+.index,
+.Sub_Event {
+  height: 100%;
 }
 
+
 // Header Cover (_headerCover.erb)
+
 .siteWrapper {
   @include vcenter;
   -webkit-box-shadow: inset 0 0 300px rgba(0,0,0,.5);
@@ -200,13 +210,70 @@ html,
 }
 
 
+// Event Intro w/ Plain Background (_headerCoverSub.erb)
+
+.infoWrapperSub {
+  width: 100%;
+  height: 65%;
+  min-height: 65%;
+  display: -webkit-box; 
+  display: -ms-flexbox; 
+  display: -webkit-flex;
+  display: flex;
+  .infoWrapperInnerSub {
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    background : linear-gradient(transparent, rgba(0,0,0,.9)), url(../images/800_450.jpg) fixed no-repeat 100%;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    padding: 20% 28% 10% 28%;
+    @media (max-width: 767px) {
+      padding: 40% 20%;
+    }
+    .container-fluid {
+      display: -webkit-box; 
+      display: -ms-flexbox; 
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+              align-items: center;
+      -webkit-justify-content: center;
+              justify-content: center;
+    }
+  }
+}
+.eventSubTitle {
+  font-size: 44px;
+  color: #fff;
+  text-align: center;
+}
+.eventInfoSub {
+  background-color: #0000aa;
+}
+.infoSubText {
+  color: #fff;
+  padding: 4.5% 12%;
+  @media (max-width: 767px) {
+    padding: 12%;
+  }
+  h2 {
+    margin-top: 0;
+    margin-bottom: 2.5%; 
+    text-align: center;
+  }
+}
+
+
 // Event List (_subEventInfo2.erb, _subEventInfo3.erb)
 
 .eventListWrapper {
   text-align: center;
   padding: 5%;
   @media (max-width: 767px) {
-    padding: 10%;
+    padding: 7%;
   }
   .eventListImage {
     display: inline-block;
@@ -223,6 +290,10 @@ html,
 }
 .eventList1Img {
   min-width: 100%;
+  @media (max-width: 767px) {
+    padding: 6%;
+    padding-bottom: 0;
+  }
 }
 .eventList3Img {
   min-width: 80%;
@@ -232,12 +303,15 @@ html,
   @media (max-width: 767px) {
     padding: 10%;
   }
-  h2,
   p {
     text-align: left;
   }
   h2 {
     margin-top: 15px;
+    text-align: left;
+    @media (max-width: 767px) {
+      margin-top: 0px;
+    }
   }
 }
 
@@ -269,7 +343,6 @@ html,
 
 
 // Sponsor Block (_sponsorArea1.erb, _sponsorArea2.erb, _sponsorArea3.erb)
-// $blockHeight, $buttonRight, $buttonBottom
 
 .sponsorBlock1 {
   @include sponsorBlock(20%, 15%, 15%);
@@ -287,7 +360,7 @@ html,
   @include sponsorBlock(10%, 13%, 10%);
   .row {
     .sponsorInfo {
-      padding-top: 3%; // Height adjust. Default value of @mixin is too damn high.
+      padding-top: 3%; // Height adjust. Default @mixin value is too damn high.
     }
   }
   @media (max-width: 767px) {
@@ -357,17 +430,16 @@ html,
   opacity: 1;
 }
 .popup {
-  margin: 70px auto;
-  padding: 20px;
+  margin: 5% 10%;
+  padding: 1%;
   background: #fff;
   border-radius: 5px;
-  width: 70%;
+  width: 80%;
   position: relative;
   transition: all 5s ease-in-out;
+  z-index: 5;
   h2 {
     margin-top: 0;
-    color: #0000aa;
-    font-family: Tahoma, Arial, sans-serif;
   }
   .close {
     position: absolute;
@@ -378,20 +450,10 @@ html,
     font-weight: bold;
     text-decoration: none;
     color: #0000aa;
-  }
-  .content {
-    max-height: 30%;
-    overflow: auto;
+    z-index: 6;
   }
 }
-@media screen and (max-width: 700px){
-  .box{
-    width: 70%;
-  }
-  .popup{
-    width: 70%;
-  }
-}
+
 
 
 // Used Sponsor Area
@@ -424,11 +486,6 @@ html,
     text-align: center;
     padding-top: 6%;
   }
-  .brandHyphen {
-    width: 4%;
-    margin: 2% 48% 4% 48%;
-    border: 1px solid #fff; 
-  }
   .brandLogoContainer {
     margin: 0 10%;
     .brandLogo{
@@ -441,6 +498,11 @@ html,
       }
     }
   }
+}
+.brandHyphen {
+  width: 4%;
+  margin: 2% 48% 4% 48%;
+  border: 1px solid #fff; 
 }
 
 
@@ -456,9 +518,14 @@ html,
   }
   
   .buyBlockInner {
+    display: -webkit-box; 
+    display: -ms-flexbox; 
+    display: -webkit-flex;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-justify-content: center;
+            justify-content: center;
     .buyText {
       display: inline-block;
     }
@@ -473,9 +540,6 @@ html,
     }
   }
 }
-
-
-
 
 
 
